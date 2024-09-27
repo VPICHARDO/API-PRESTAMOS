@@ -1,0 +1,6 @@
+@API_PRESTAMOS_HostAddress = http://localhost:5216
+
+GET {{API_PRESTAMOS_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
