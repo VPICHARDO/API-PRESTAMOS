@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace API_PRESTAMOS.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class CambioCambioTablaEmploEmployee : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -40,10 +40,10 @@ namespace API_PRESTAMOS.Migrations
                     email = table.Column<string>(type: "TEXT", nullable: true),
                     telefono = table.Column<string>(type: "TEXT", nullable: true),
                     direccion = table.Column<string>(type: "TEXT", nullable: true),
-                    id_card = table.Column<string>(type: "TEXT", nullable: false),
-                    passport = table.Column<string>(type: "TEXT", nullable: false),
                     puntaje_credito = table.Column<int>(type: "INTEGER", nullable: true),
-                    fecha_creacion = table.Column<DateTime>(type: "DATETIME", nullable: true, defaultValueSql: "CURRENT_TIMESTAMP")
+                    fecha_creacion = table.Column<DateTime>(type: "DATETIME", nullable: true, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    id_card = table.Column<string>(type: "TEXT", nullable: true),
+                    passport = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -67,9 +67,9 @@ namespace API_PRESTAMOS.Migrations
                     email = table.Column<string>(type: "TEXT", nullable: false),
                     contrasena = table.Column<string>(type: "TEXT", nullable: false),
                     rol = table.Column<string>(type: "TEXT", nullable: true),
-                    id_card = table.Column<string>(type: "TEXT", nullable: false),
-                    passport = table.Column<string>(type: "TEXT", nullable: false),
-                    fecha_creacion = table.Column<DateTime>(type: "DATETIME", nullable: true, defaultValueSql: "CURRENT_TIMESTAMP")
+                    fecha_creacion = table.Column<DateTime>(type: "DATETIME", nullable: true, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    passport = table.Column<string>(type: "TEXT", nullable: true),
+                    id_card = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {

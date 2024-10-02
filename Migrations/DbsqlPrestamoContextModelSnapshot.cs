@@ -47,10 +47,18 @@ namespace API_PRESTAMOS.Migrations
                         .HasColumnName("fecha_creacion")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
+                    b.Property<string>("IdCard")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("id_card");
+
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasColumnType("TEXT")
                         .HasColumnName("nombre");
+
+                    b.Property<string>("Passport")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("passport");
 
                     b.Property<int?>("PuntajeCredito")
                         .HasColumnType("INTEGER")
@@ -60,17 +68,9 @@ namespace API_PRESTAMOS.Migrations
                         .HasColumnType("TEXT")
                         .HasColumnName("telefono");
 
-                    b.Property<string>("id_card")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("passport")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.HasKey("ClienteId");
 
-                    b.HasIndex("CompanyId");
+                    b.HasIndex(new[] { "CompanyId" }, "IX_Clients_company_id");
 
                     b.HasIndex(new[] { "Email" }, "IX_Clients_email")
                         .IsUnique();
@@ -105,9 +105,9 @@ namespace API_PRESTAMOS.Migrations
 
                     b.HasKey("HistorialId");
 
-                    b.HasIndex("ClienteId");
+                    b.HasIndex(new[] { "ClienteId" }, "IX_ClientHistory_cliente_id");
 
-                    b.HasIndex("PrestamoId");
+                    b.HasIndex(new[] { "PrestamoId" }, "IX_ClientHistory_prestamo_id");
 
                     b.ToTable("ClientHistory", (string)null);
                 });
@@ -179,26 +179,26 @@ namespace API_PRESTAMOS.Migrations
                         .HasColumnName("fecha_creacion")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
+                    b.Property<string>("IdCard")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("id_card");
+
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasColumnType("TEXT")
                         .HasColumnName("nombre");
 
+                    b.Property<string>("Passport")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("passport");
+
                     b.Property<string>("Rol")
                         .HasColumnType("TEXT")
                         .HasColumnName("rol");
 
-                    b.Property<string>("id_card")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("passport")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.HasKey("EmpleadoId");
 
-                    b.HasIndex("CompanyId");
+                    b.HasIndex(new[] { "CompanyId" }, "IX_Employees_company_id");
 
                     b.HasIndex(new[] { "Email" }, "IX_Employees_email")
                         .IsUnique();
@@ -269,11 +269,11 @@ namespace API_PRESTAMOS.Migrations
 
                     b.HasKey("PrestamoId");
 
-                    b.HasIndex("ClienteId");
+                    b.HasIndex(new[] { "ClienteId" }, "IX_Loans_cliente_id");
 
-                    b.HasIndex("CompanyId");
+                    b.HasIndex(new[] { "CompanyId" }, "IX_Loans_company_id");
 
-                    b.HasIndex("EmpleadoId");
+                    b.HasIndex(new[] { "EmpleadoId" }, "IX_Loans_empleado_id");
 
                     b.ToTable("Loans");
                 });
@@ -317,7 +317,7 @@ namespace API_PRESTAMOS.Migrations
 
                     b.HasKey("PagoId");
 
-                    b.HasIndex("PrestamoId");
+                    b.HasIndex(new[] { "PrestamoId" }, "IX_Payments_prestamo_id");
 
                     b.ToTable("Payments");
                 });
@@ -353,7 +353,7 @@ namespace API_PRESTAMOS.Migrations
 
                     b.HasKey("MoraId");
 
-                    b.HasIndex("PrestamoId");
+                    b.HasIndex(new[] { "PrestamoId" }, "IX_PenaltySettings_prestamo_id");
 
                     b.ToTable("PenaltySettings");
                 });

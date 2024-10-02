@@ -379,3 +379,4 @@ C:\Users\vpichardo\Downloads\API-PRESTAMO GIT\API-PRESTAMOS\obj\Debug\net8.0\ref
 C:\Users\vpichardo\Downloads\API-PRESTAMO GIT\API-PRESTAMOS\obj\Debug\net8.0\API-PRESTAMOS.pdb
 C:\Users\vpichardo\Downloads\API-PRESTAMO GIT\API-PRESTAMOS\obj\Debug\net8.0\API-PRESTAMOS.genruntimeconfig.cache
 C:\Users\vpichardo\Downloads\API-PRESTAMO GIT\API-PRESTAMOS\obj\Debug\net8.0\ref\API-PRESTAMOS.dll
+C:\Users\vpichardo\Downloads\API-PRESTAMO GIT\API-PRESTAMOS\obj\Debug\net8.0\API-PRESTAMOS.sourcelink.json

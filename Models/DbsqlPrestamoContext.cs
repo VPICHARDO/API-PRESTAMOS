@@ -25,13 +25,15 @@ public partial class DbsqlPrestamoContext : DbContext
 
     public virtual DbSet<Loan> Loans { get; set; }
 
+    public virtual DbSet<Login> Logins { get; set; }
+
     public virtual DbSet<Payment> Payments { get; set; }
 
     public virtual DbSet<PenaltySetting> PenaltySettings { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlite("Data Source=BD-SQL/DBSQL_PRESTAMO.sqlite");
+        => optionsBuilder.UseSqlite("Data Source=BD-SQL\\DBSQL_PRESTAMO.sqlite");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -44,19 +46,20 @@ public partial class DbsqlPrestamoContext : DbContext
             entity.HasIndex(e => e.Email, "IX_Clients_email").IsUnique();
 
             entity.Property(e => e.ClienteId).HasColumnName("cliente_id");
-            entity.Property(e => e.Apellido).HasColumnName("apellido");
+            entity.Property(e => e.Address).HasColumnName("address");
+            entity.Property(e => e.City).HasColumnName("city");
             entity.Property(e => e.CompanyId).HasColumnName("company_id");
-            entity.Property(e => e.Direccion).HasColumnName("direccion");
-            entity.Property(e => e.Email).HasColumnName("email");
-            entity.Property(e => e.FechaCreacion)
+            entity.Property(e => e.CreationDate)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .HasColumnType("DATETIME")
-                .HasColumnName("fecha_creacion");
+                .HasColumnName("creation_date");
+            entity.Property(e => e.Email).HasColumnName("email");
             entity.Property(e => e.IdCard).HasColumnName("id_card");
-            entity.Property(e => e.Nombre).HasColumnName("nombre");
+            entity.Property(e => e.LastName).HasColumnName("last_name");
+            entity.Property(e => e.Name).HasColumnName("name");
             entity.Property(e => e.Passport).HasColumnName("passport");
+            entity.Property(e => e.Phone).HasColumnName("phone");
             entity.Property(e => e.PuntajeCredito).HasColumnName("puntaje_credito");
-            entity.Property(e => e.Telefono).HasColumnName("telefono");
 
             entity.HasOne(d => d.Company).WithMany(p => p.Clients)
                 .HasForeignKey(d => d.CompanyId)
@@ -111,18 +114,28 @@ public partial class DbsqlPrestamoContext : DbContext
             entity.HasIndex(e => e.Email, "IX_Employees_email").IsUnique();
 
             entity.Property(e => e.EmpleadoId).HasColumnName("empleado_id");
-            entity.Property(e => e.Apellido).HasColumnName("apellido");
+            entity.Property(e => e.Address).HasColumnName("address");
+            entity.Property(e => e.City).HasColumnName("city");
             entity.Property(e => e.CompanyId).HasColumnName("company_id");
             entity.Property(e => e.Contrasena).HasColumnName("contrasena");
-            entity.Property(e => e.Email).HasColumnName("email");
-            entity.Property(e => e.FechaCreacion)
+            entity.Property(e => e.CreationDate)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .HasColumnType("DATETIME")
-                .HasColumnName("fecha_creacion");
+                .HasColumnName("creation_date");
+            entity.Property(e => e.DateOfBirth)
+                .HasColumnType("DATETIME")
+                .HasColumnName("date_of_birth");
+            entity.Property(e => e.Email).HasColumnName("email");
             entity.Property(e => e.IdCard).HasColumnName("id_card");
-            entity.Property(e => e.Nombre).HasColumnName("nombre");
-            entity.Property(e => e.Passport).HasColumnName("passport");
-            entity.Property(e => e.Rol).HasColumnName("rol");
+            entity.Property(e => e.LastName).HasColumnName("last_name");
+            entity.Property(e => e.Name).HasColumnName("name");
+            entity.Property(e => e.Passport)
+                .HasColumnType("INTEGER")
+                .HasColumnName("passport");
+            entity.Property(e => e.Phone).HasColumnName("phone");
+            entity.Property(e => e.Rol)
+                .HasColumnType("NUMERIC")
+                .HasColumnName("rol");
 
             entity.HasOne(d => d.Company).WithMany(p => p.Employees)
                 .HasForeignKey(d => d.CompanyId)
@@ -177,6 +190,21 @@ public partial class DbsqlPrestamoContext : DbContext
             entity.HasOne(d => d.Empleado).WithMany(p => p.Loans)
                 .HasForeignKey(d => d.EmpleadoId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
+        });
+
+        modelBuilder.Entity<Login>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToTable("Login");
+
+            entity.Property(e => e.Active)
+                .HasColumnType("NUMERIC")
+                .HasColumnName("active");
+            entity.Property(e => e.CompanyId).HasColumnName("company_id");
+            entity.Property(e => e.EmpleadoId).HasColumnName("empleado_id");
+            entity.Property(e => e.Password).HasColumnName("password");
+            entity.Property(e => e.User).HasColumnName("user");
         });
 
         modelBuilder.Entity<Payment>(entity =>

@@ -9,9 +9,9 @@ public partial class Employee
 
     public int CompanyId { get; set; }
 
-    public string Nombre { get; set; } = null!;
+    public string Name { get; set; } = null!;
 
-    public string Apellido { get; set; } = null!;
+    public string LastName { get; set; } = null!;
 
     public string Email { get; set; } = null!;
 
@@ -19,11 +19,19 @@ public partial class Employee
 
     public string? Rol { get; set; }
 
-    public DateTime? FechaCreacion { get; set; }
+    public DateTime? CreationDate { get; set; }
 
     public string? Passport { get; set; }
 
     public string? IdCard { get; set; }
+
+    public string? City { get; set; }
+
+    public DateTime? DateOfBirth { get; set; }
+
+    public string? Address { get; set; }
+
+    public string? Phone { get; set; }
 
     public virtual Company Company { get; set; } = null!;
 
