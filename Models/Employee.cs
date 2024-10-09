@@ -33,7 +33,7 @@ public partial class Employee
 
     public string? Phone { get; set; }
 
-    public virtual Company Company { get; set; } = null!;
+   public virtual Company? Company { get; set; } = null!;
 
     public virtual ICollection<Loan> Loans { get; set; } = new List<Loan>();
 }

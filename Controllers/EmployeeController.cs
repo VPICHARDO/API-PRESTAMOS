@@ -53,5 +53,37 @@ public EmployeeController (DbsqlPrestamoContext context)
     }
 
 
+
+    // POST: api/productos
+    [HttpPut]
+    public async Task<ActionResult<Employee>> PutEmpleado(string id,Employee ep)
+    {
+        
+      Employee empl = await BD.Employees.Where(x=> x.IdCard == id).FirstAsync();
+
+        if (empl != null)
+        {
+      empl.CompanyId    = ep.CompanyId;
+      empl.Name = ep.Name;
+      empl.LastName  = ep.LastName;
+      empl.Email  = ep.Email;
+      empl.Contrasena  = ep.Contrasena;
+      empl.Rol = ep.Rol;
+      empl.CreationDate = ep.CreationDate;
+      empl.Passport  = ep.Passport;
+      empl.IdCard  = ep.IdCard;
+      empl.City  = ep.City;
+      empl.DateOfBirth = ep.DateOfBirth;
+      empl.Address  = ep.Address;
+      empl.Phone = ep.Phone;
+        }
+      BD.SaveChanges();
+
+   
+    return CreatedAtAction(nameof(GetEmpleado), new { id = ep.EmpleadoId}, ep);
+       
+    }
+
+
     
 }
