@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("API-PRESTAMOS")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b6748ad4df43c61155edf0cdbb2a2e1d1b28499e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+496f9843bfd5424f4987ecfa66eb74dc72fb18e8")]
 [assembly: System.Reflection.AssemblyProductAttribute("API-PRESTAMOS")]
 [assembly: System.Reflection.AssemblyTitleAttribute("API-PRESTAMOS")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

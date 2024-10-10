@@ -59,29 +59,49 @@ public EmployeeController (DbsqlPrestamoContext context)
     public async Task<ActionResult<Employee>> PutEmpleado(string id,Employee ep)
     {
         
-      Employee empl = await BD.Employees.Where(x=> x.IdCard == id).FirstAsync();
+      try
+      {
 
-        if (empl != null)
-        {
-      empl.CompanyId    = ep.CompanyId;
-      empl.Name = ep.Name;
-      empl.LastName  = ep.LastName;
-      empl.Email  = ep.Email;
-      empl.Contrasena  = ep.Contrasena;
-      empl.Rol = ep.Rol;
-      empl.CreationDate = ep.CreationDate;
-      empl.Passport  = ep.Passport;
-      empl.IdCard  = ep.IdCard;
-      empl.City  = ep.City;
-      empl.DateOfBirth = ep.DateOfBirth;
-      empl.Address  = ep.Address;
-      empl.Phone = ep.Phone;
-        }
+       if (id.Length == 11 & )
+       {
+        
+       }
+
+        Employee empl = await BD.Employees.Where(x=> x.IdCard == id).FirstAsync();
+    
+
+      if (empl == null)
+    {
+        return NotFound($"Empleado con IdCard {id} no encontrado.");
+    }
+
+      // Verifica si hay cambios antes de actualizar
+    if (empl.CompanyId != ep.CompanyId) empl.CompanyId = ep.CompanyId;
+    if (empl.Name != ep.Name) empl.Name = ep.Name;
+    if (empl.LastName != ep.LastName) empl.LastName = ep.LastName;
+    if (empl.Email != ep.Email) empl.Email = ep.Email;
+    if (empl.Contrasena != ep.Contrasena) empl.Contrasena = ep.Contrasena;
+    if (empl.Rol != ep.Rol) empl.Rol = ep.Rol;
+    if (empl.CreationDate != ep.CreationDate) empl.CreationDate = ep.CreationDate;
+    if (empl.Passport != ep.Passport) empl.Passport = ep.Passport;
+    if (empl.IdCard != ep.IdCard) empl.IdCard = ep.IdCard;
+    if (empl.City != ep.City) empl.City = ep.City;
+    if (empl.DateOfBirth != ep.DateOfBirth) empl.DateOfBirth = ep.DateOfBirth;
+    if (empl.Address != ep.Address) empl.Address = ep.Address;
+    if (empl.Phone != ep.Phone) empl.Phone = ep.Phone;
+
+    // Guarda los cambios si hubo modificaciones
+        
       BD.SaveChanges();
 
    
     return CreatedAtAction(nameof(GetEmpleado), new { id = ep.EmpleadoId}, ep);
-       
+         }
+      catch (System.Exception)
+      {
+      return NotFound("ERROR");
+        throw;
+      }
     }
 
 
